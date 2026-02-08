@@ -41,11 +41,11 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     const { items } = get();
     if (items.length === 0) return "Hello Kendrapara Mart, I want to place an order.";
     
-    let message = "Hello Kendrapara Mart,\nI want to order:\n";
+    let message = "Hello Kendrapara Mart,\nI want to order:\n\n";
     items.forEach((item) => {
       message += `- ${item.product.name} – ${item.quantity} ${item.product.unit}\n`;
     });
-    message += "\nDelivery location:\n(share Google Maps location)";
+    message += "\nDelivery location:\n(I will share Google Maps location)";
     return message;
   },
 }));

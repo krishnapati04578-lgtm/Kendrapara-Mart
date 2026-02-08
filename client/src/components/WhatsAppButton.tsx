@@ -19,7 +19,7 @@ export function WhatsAppButton({
   ...props 
 }: WhatsAppButtonProps) {
   const { items, generateWhatsAppMessage } = useOrderStore();
-  const phoneNumber = "919876543210"; 
+  const phoneNumber = "919556217676"; 
   const message = encodeURIComponent(generateWhatsAppMessage());
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
@@ -31,7 +31,10 @@ export function WhatsAppButton({
   };
 
   const handleClick = () => {
-    window.open(whatsappUrl, '_blank');
+    const popup = window.open(whatsappUrl, '_blank');
+    if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+      alert('Please allow popups to open WhatsApp, or copy this link: ' + whatsappUrl);
+    }
   };
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);

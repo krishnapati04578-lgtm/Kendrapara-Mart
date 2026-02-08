@@ -1,0 +1,124 @@
+You are a senior full-stack engineer.
+
+Goal:
+Build a PRODUCTION-READY admin panel for an existing grocery website “Kendrapara Mart”.
+This admin panel must be HOSTED, SECURE, and AUTO-SYNC with the public website.
+NO localStorage-only solutions. NO static JSON-only hacks.
+
+Tech Stack (MANDATORY):
+- Backend: Node.js + Express
+- Database: SQLite (file-based, hosted in Replit)
+- Auth: Admin login (email + password, hashed)
+- Frontend Admin UI: simple HTML/CSS/JS (or minimal React if needed)
+- API-based architecture
+- Public site fetches data via API (real-time updates)
+
+Core Requirements:
+
+1. AUTHENTICATION
+- Admin login page (/admin/login)
+- Secure session or JWT auth
+- Password hashing (bcrypt)
+- Protected admin routes
+- Logout support
+
+2. DATABASE SCHEMA
+Create SQLite tables:
+- admins (id, email, password_hash, created_at)
+- products (
+    id,
+    name,
+    category,
+    price,
+    unit,
+    available (boolean),
+    minQty,
+    maxQty,
+    stepQty,
+    image_url,
+    created_at,
+    updated_at
+)
+- app_config (
+    business_name,
+    whatsapp_number,
+    message_template,
+    updated_at
+)
+
+3. ADMIN PANEL FEATURES
+Admin Dashboard (/admin):
+- Add product
+- Edit product
+- Delete product
+- Toggle availability (In stock / Out of stock)
+- Set min/max quantity
+- Upload product image (image compression, WebP preferred)
+- Manage WhatsApp number & message template
+- Search & filter products
+- Mobile-friendly UI
+
+4. IMAGE HANDLING
+- Image upload endpoint
+- Compress images server-side
+- Store images in /uploads
+- Save image URL in database
+- Validate file type & size
+
+5. API ENDPOINTS
+Public:
+- GET /api/products
+- GET /api/config
+
+Admin (protected):
+- POST /api/admin/login
+- POST /api/admin/logout
+- POST /api/admin/products
+- PUT /api/admin/products/:id
+- DELETE /api/admin/products/:id
+- POST /api/admin/upload-image
+- PUT /api/admin/config
+
+6. PUBLIC SITE INTEGRATION
+- Public website must fetch products via API
+- Any admin change should reflect immediately on public site
+- No rebuild, no redeploy needed for data changes
+
+7. SECURITY
+- Input validation
+- XSS-safe outputs
+- Auth middleware
+- File upload protection
+- No secrets exposed to frontend
+
+8. PROJECT STRUCTURE
+/server
+  ├─ index.js
+  ├─ db.sqlite
+  ├─ auth.js
+  ├─ routes/
+  ├─ middleware/
+  ├─ uploads/
+/admin
+  ├─ login.html
+  ├─ dashboard.html
+  ├─ admin.js
+/public
+  ├─ index.html
+  ├─ app.js
+
+9. DELIVERABLES
+- Fully working Replit project
+- Runs with one command: `npm start`
+- Clear README with setup steps
+- Default admin account created on first run
+
+IMPORTANT RULES:
+- This must work on Replit hosting (not localhost-only)
+- Do NOT use localStorage as primary database
+- Do NOT over-engineer (no Firebase, no Supabase)
+- Keep it simple, clean, and reliable
+- Assume this will later be moved to Hostinger/VPS
+
+Output:
+Generate the complete working codebase with explanations where necessary.

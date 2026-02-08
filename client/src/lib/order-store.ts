@@ -42,10 +42,16 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     if (items.length === 0) return "Hello Kendrapara Mart, I want to place an order.";
     
     let message = "Hello Kendrapara Mart,\nI want to order:\n\n";
+    const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+    const estimatedTotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+
     items.forEach((item) => {
-      message += `- ${item.product.name} – ${item.quantity} ${item.product.unit}\n`;
+      const lineTotal = item.product.price * item.quantity;
+      message += `- ${item.product.name} – ${item.quantity} × ${item.product.unit} (₹${lineTotal})\n`;
     });
-    message += "\nDelivery location:\n(I will share Google Maps location)";
+
+    message += `\nTotal Items: ${totalItems}\nEstimated Total: ₹${estimatedTotal}`;
+    message += "\n\nDelivery location:\n(I will share Google Maps location)";
     return message;
   },
 }));

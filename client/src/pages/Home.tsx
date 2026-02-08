@@ -183,6 +183,13 @@ export default function Home() {
                     <p className="text-sm text-muted-foreground">A small extra delivery fee may apply during heavy rains.</p>
                   </div>
                 </div>
+                <div className="flex gap-4">
+                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 text-primary shadow-sm font-bold">₹</div>
+                  <div>
+                    <h3 className="font-bold mb-1">Delivery Terms</h3>
+                    <p className="text-sm text-muted-foreground">Minimum order value ₹100. Delivery charges start from ₹20 based on distance and time slot.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

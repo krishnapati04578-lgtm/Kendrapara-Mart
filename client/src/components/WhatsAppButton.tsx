@@ -1,9 +1,9 @@
 import { MessageCircle, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, type HTMLMotionProps } from "framer-motion";
 import { useOrderStore } from "@/lib/order-store";
 
-interface WhatsAppButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface WhatsAppButtonProps extends Omit<HTMLMotionProps<"button">, "onClick"> {
   size?: "sm" | "default" | "lg" | "xl";
   showIcon?: boolean;
   fullWidth?: boolean;

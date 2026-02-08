@@ -1,6 +1,7 @@
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { useOrderStore } from "@/lib/order-store";
 
 interface WhatsAppButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "sm" | "default" | "lg" | "xl";
@@ -14,12 +15,12 @@ export function WhatsAppButton({
   size = "default", 
   showIcon = true,
   fullWidth = false,
-  text = "Order on WhatsApp",
+  text,
   ...props 
 }: WhatsAppButtonProps) {
-  // Replace with actual number
+  const { items, generateWhatsAppMessage } = useOrderStore();
   const phoneNumber = "919876543210"; 
-  const message = encodeURIComponent("Hello Kendrapara Mart, I want to place an order.");
+  const message = encodeURIComponent(generateWhatsAppMessage());
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
   const sizeClasses = {
@@ -32,6 +33,9 @@ export function WhatsAppButton({
   const handleClick = () => {
     window.open(whatsappUrl, '_blank');
   };
+
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  const buttonText = text || (totalItems > 0 ? `Order ${totalItems} items on WhatsApp` : "Order on WhatsApp");
 
   return (
     <motion.button
@@ -47,8 +51,12 @@ export function WhatsAppButton({
       )}
       {...props}
     >
-      {showIcon && <MessageCircle className="mr-2.5 h-[1.2em] w-[1.2em] fill-current" />}
-      {text}
+      {showIcon && (
+        totalItems > 0 
+          ? <ShoppingBag className="mr-2.5 h-[1.2em] w-[1.2em]" />
+          : <MessageCircle className="mr-2.5 h-[1.2em] w-[1.2em] fill-current" />
+      )}
+      {buttonText}
     </motion.button>
   );
 }

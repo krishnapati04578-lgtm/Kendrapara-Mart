@@ -4,21 +4,21 @@ interface ProductCardProps {
   title: string;
   imageUrl: string;
   delay?: number;
+  onClick?: () => void;
 }
 
-export function ProductCard({ title, imageUrl, delay = 0 }: ProductCardProps) {
+export function ProductCard({ title, imageUrl, delay = 0, onClick }: ProductCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay }}
-      className="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-muted shadow-sm hover:shadow-md transition-all cursor-default"
+      onClick={onClick}
+      className="group relative overflow-hidden rounded-2xl aspect-[4/3] bg-muted shadow-sm hover:shadow-md transition-all cursor-pointer"
     >
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
       
-      {/* HTML Comment for Image: Dynamic or Static based on props */}
-      {/* Image displayed: {title} */}
       <img 
         src={imageUrl} 
         alt={title}

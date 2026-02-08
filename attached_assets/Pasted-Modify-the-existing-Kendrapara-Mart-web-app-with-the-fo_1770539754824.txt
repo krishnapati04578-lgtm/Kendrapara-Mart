@@ -1,0 +1,74 @@
+Modify the existing Kendrapara Mart web app with the following STRICT requirements.
+Do NOT add new frameworks, authentication, payments, or databases.
+
+CORE GOAL
+The website must show products and prices clearly.
+WhatsApp must be used ONLY as the final order step with a pre-filled message.
+The website itself is NOT an e-commerce checkout.
+
+REQUIRED BEHAVIOR
+
+1. Product & Price Display (VERY IMPORTANT)
+- Show a clear product list on the website.
+- Organize products by category:
+  • Vegetables
+  • Fruits
+  • Groceries
+  • Snacks & Cold Drinks
+- Each product must display:
+  • Product name
+  • Unit (kg / piece / packet)
+  • Price
+
+2. Click Behavior Rules
+- “What We Deliver” cards MUST be clickable.
+- Clicking a category card scrolls to that category’s product list on the same page.
+- “View Full Catalog” MUST NOT redirect to WhatsApp.
+- “View Full Catalog” should scroll to the product list section.
+
+3. WhatsApp Ordering Flow (FINAL STEP ONLY)
+- Each product must have an “Add to Order” button.
+- Clicking “Add to Order” adds the item to a temporary order list (frontend-only, no backend).
+- A single “Order on WhatsApp” button should exist at the bottom.
+- When clicked, WhatsApp opens with an auto-generated message containing:
+  • Selected product names
+  • Quantities
+  • A placeholder for delivery location
+
+Example WhatsApp message format:
+Hello Kendrapara Mart,
+I want to order:
+- Tomato – 1 kg
+- Potato – 2 kg
+
+Delivery location:
+(share Google Maps location)
+
+4. Admin Simplicity
+- Products and prices should be stored in a simple frontend structure (JSON or JS object).
+- Prices must be easy to update without touching UI layout.
+- Do NOT build an admin login or backend.
+
+5. UX Rules
+- Mobile-first layout.
+- No popups.
+- No redirects except WhatsApp.
+- WhatsApp should NEVER open until the final “Order on WhatsApp” button is clicked.
+
+6. Legal & Trust Notices
+- Display clearly:
+  • Cigarettes: 18+ only
+  • Alcohol: Not delivered
+  • Extra charges may apply for rain or night delivery
+
+DO NOT DO
+- Do not auto-open WhatsApp on page load.
+- Do not redirect category clicks to WhatsApp.
+- Do not add checkout, cart pages, or payment gateways.
+- Do not add backend servers or databases.
+
+DELIVERABLE
+- A clean, working single-page application that:
+  • Shows products & prices
+  • Allows item selection
+  • Sends the final order via WhatsApp only
